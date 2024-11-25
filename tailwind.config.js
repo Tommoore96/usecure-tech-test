@@ -12,7 +12,17 @@ export default {
       borderWidth: {
         1: "1px",
       },
+      backgroundColor: {
+        radio: { neutral: "#001B520A" },
+      },
     },
   },
   plugins: [],
+  variants: {
+    extend: {
+      extend: {
+        cva: true,
+      },
+    },
+  },
 };
