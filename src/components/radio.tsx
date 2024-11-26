@@ -13,12 +13,12 @@ type RadioButtonProps = {
 } & VariantProps<typeof radioButton>;
 
 const radioButton = cva(
-  "flex items-center w-full border-1 rounded-lg px-3 py-[10px] disabled:pointer-events-none disabled:cursor-not-allowed",
+  "flex items-center w-full border-1 rounded-xs px-3 py-[10px] disabled:pointer-events-none disabled:cursor-not-allowed",
   {
     variants: {
       intent: {
         primary:
-          "bg-radio-neutral border-neutral hover:opacity-80 hover:opacity-80 not-disabled:active:ring-2 not-disabled:active:ring-brand active:ring-offset-2",
+          "bg-radio-neutral border-neutral hover:opacity-80 hover:opacity-80 not-disabled:active:ring-2 not-disabled:active:ring-brand-standard active:ring-offset-2",
         correct: "bg-radio-success border-success",
         warning: "bg-radio-warning border-warning",
         error: "bg-radio-danger border-danger",
@@ -42,14 +42,14 @@ export default function RadioButton({
   onChange,
 }: RadioButtonProps) {
   return (
-    <li className={cn(radioButton({ intent, size }), className)}>
+    <li className={radioButton({ intent, size, className })}>
       <input
         onChange={(e) => !disabled && onChange?.(e)}
         type="radio"
         name={question}
         id={id}
         value={value}
-        className="w-5 h-5 text-blue-600 border-gray-300 active:ring-brand"
+        className="min-w-3.5 min-h-3.5 text-blue-600 border-neutral-elevated active:ring-brand-standard border-1.5"
         disabled={disabled}
       />
       <label htmlFor={id} className="ml-2">

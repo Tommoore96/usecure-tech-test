@@ -15,6 +15,9 @@ type UserAnswersState = {
     answerId: string;
     correct: boolean;
   }) => void;
+  currentSlide: number;
+  previouseSlide: () => void;
+  nextSlide: () => void;
   resetAnswers: () => void;
   totalQuestions: number;
 };
@@ -22,7 +25,8 @@ type UserAnswersState = {
 const useUserAnswersStore = create<UserAnswersState>()(
   devtools((set) => ({
     userAnswers: {}, // Initial state: no answers selected
-    totalQuestions: data.slides.length,
+    totalQuestions: data.slides.filter((slide) => slide.type === "question")
+      .length,
     setAnswer: ({ question, answerId, correct }) =>
       set((state) => ({
         userAnswers: {
@@ -34,6 +38,10 @@ const useUserAnswersStore = create<UserAnswersState>()(
       set({
         userAnswers: {},
       }),
+    currentSlide: 1,
+    previouseSlide: () =>
+      set((state) => ({ currentSlide: state.currentSlide - 1 })),
+    nextSlide: () => set((state) => ({ currentSlide: state.currentSlide + 1 })),
   }))
 );
 

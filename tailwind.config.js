@@ -7,22 +7,24 @@ export default {
     extend: {
       ringColor: {
         neutral: "#001B5229",
-        brand: "#185ADB",
       },
       textColor: {
         secondary: "#555556",
         warning: "#BA5C00",
         danger: "#CC2414",
+        "neutral-primary": "#0C0D0D", // app default
+        "static-primary": "#F5F5F5",
       },
       borderColor: {
         neutral: "#001B5229",
-        brand: "#185ADB",
         success: "#B4DDC9",
         warning: "#FBF4EB",
         danger: "#F7C1BC",
+        "neutral-elevated": "#001B5252",
       },
       borderWidth: {
         1: "1px",
+        1.5: "1.5px",
       },
       backgroundColor: {
         radio: {
@@ -34,6 +36,16 @@ export default {
       },
       colors: {
         success: "#0C7D44",
+        brand: {
+          standard: "#185ADB",
+          light: "#EDF2FC",
+        },
+      },
+      height: {
+        18: "72px",
+      },
+      borderRadius: {
+        xs: "6px",
       },
     },
   },
