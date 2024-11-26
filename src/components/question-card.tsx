@@ -44,6 +44,9 @@ export default function QuestionCard({
             return (
               <div className="flex flex-col gap-1">
                 <RadioButton
+                  className={cn({
+                    "cursor-not-allowed": !!selectedAnswer,
+                  })}
                   key={answer.id}
                   intent={intent}
                   id={answer.id}
@@ -57,6 +60,7 @@ export default function QuestionCard({
                       correct: answer.correct,
                     })
                   }
+                  disabled={!!selectedAnswer}
                 />
                 {intent === "correct" ? (
                   <span className="text-base text-success">

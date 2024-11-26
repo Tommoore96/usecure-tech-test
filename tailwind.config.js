@@ -1,3 +1,5 @@
+import plugin from "tailwindcss";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -15,19 +17,32 @@ export default {
       borderColor: {
         neutral: "#001B5229",
         brand: "#185ADB",
+        success: "#B4DDC9",
+        warning: "#FBF4EB",
+        danger: "#F7C1BC",
       },
       borderWidth: {
         1: "1px",
       },
       backgroundColor: {
-        radio: { neutral: "#001B520A", warning: "#FBF4EB" },
+        radio: {
+          neutral: "#001B520A",
+          warning: "#FBF4EB",
+          success: "#ECF6F1",
+          danger: "#FDEFEE",
+        },
       },
       colors: {
         success: "#0C7D44",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant }) {
+      // Add a `not-disabled` variant
+      addVariant("not-disabled", "&:not(:disabled)");
+    }),
+  ],
   variants: {
     extend: {
       extend: {
