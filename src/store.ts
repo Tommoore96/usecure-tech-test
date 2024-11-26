@@ -37,8 +37,16 @@ const useUserAnswersStore = create<UserAnswersState>()(
         userAnswers: {},
       }),
     currentSlide: 0,
+    /**
+     * reduces the current slide index by 1
+     * @returns void
+     */
     previouseSlide: () =>
       set((state) => ({ currentSlide: state.currentSlide - 1 })),
+    /**
+     * increases the current slide index by 1
+     * @returns void
+     */
     nextSlide: () => set((state) => ({ currentSlide: state.currentSlide + 1 })),
     questions: data.slides
       .filter((slide) => slide.type === "question")

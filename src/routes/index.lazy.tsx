@@ -5,7 +5,6 @@ import { data } from "../db";
 import { cn } from "../utils/cn";
 import Button from "../components/button";
 import useUserAnswersStore from "../store";
-import ButtonGroup from "../components/button-group";
 
 export const Route = createLazyFileRoute("/")({
   component: Index,
