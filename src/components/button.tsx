@@ -7,14 +7,17 @@ type ButtonProps = {
 } & VariantProps<typeof button> &
   React.HTMLAttributes<HTMLButtonElement>;
 
-const button = cva("py-2 px-4 rounded-xs flex", {
-  variants: {
-    intent: {
-      primary: "bg-brand-standard text-static-primary",
-      secondary: "bg-brand-light text-neutral-primary",
+const button = cva(
+  "py-2 px-4 rounded-xs flex disabled:bg-brand-disabled disabled:pointer-events-none disabled:cursor-not-allowed",
+  {
+    variants: {
+      intent: {
+        primary: "bg-brand-standard text-static-primary",
+        secondary: "bg-brand-light text-neutral-primary",
+      },
     },
-  },
-});
+  }
+);
 
 export default function Button({
   onClick,
@@ -24,7 +27,11 @@ export default function Button({
   className,
 }: ButtonProps) {
   return (
-    <button className={button({ intent, className })} disabled={disabled}>
+    <button
+      className={button({ intent, className })}
+      disabled={disabled}
+      onClick={(e) => onClick?.(e)}
+    >
       {children}
     </button>
   );

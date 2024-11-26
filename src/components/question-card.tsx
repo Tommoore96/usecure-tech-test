@@ -3,21 +3,25 @@ import { Slide } from "../db";
 import { cn } from "../utils/cn";
 import RadioButton from "./radio";
 import useUserAnswersStore from "../store";
+import { useShallow } from "zustand/shallow";
 
 type QuestionCardProps = {
-  number: number;
   question: Slide["question"];
   answers: Slide["answers"];
   className?: string;
 };
 
 export default function QuestionCard({
-  number,
   question,
   answers,
   className,
 }: QuestionCardProps) {
-  const { setAnswer, userAnswers } = useUserAnswersStore();
+  const { setAnswer, userAnswers } = useUserAnswersStore(
+    useShallow((state) => ({
+      userAnswers: state.userAnswers,
+      setAnswer: state.setAnswer,
+    }))
+  );
   const selectedAnswer = userAnswers[question];
 
   return (
@@ -27,22 +31,23 @@ export default function QuestionCard({
       <form onSubmit={(e) => e.preventDefault()}>
         <ul className="gap-3 flex flex-col">
           {answers.map((answer) => {
-            let intent: "primary" | "correct" | "error" | "warning" = "primary";
+            let intent: "primary" | "correct" | "danger" | "warning" =
+              "primary";
 
             if (selectedAnswer) {
               if (selectedAnswer.correct) {
                 if (selectedAnswer.answerId === answer.id) {
                   intent = "correct";
                 }
-              } else if (!answer.correct) {
-                intent = "error";
-              } else {
+              } else if (selectedAnswer.answerId === answer.id) {
+                intent = "danger";
+              } else if (answer.correct) {
                 intent = "warning";
               }
             }
 
             return (
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1" key={answer.id}>
                 <RadioButton
                   className={cn({
                     "cursor-not-allowed": !!selectedAnswer,
@@ -72,7 +77,7 @@ export default function QuestionCard({
                     This was the correct answer: This is why
                   </span>
                 ) : null}
-                {intent === "error" ? (
+                {intent === "danger" ? (
                   <span className="text-base text-danger">
                     Incorrect. This is not the correct answer
                   </span>

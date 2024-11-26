@@ -39,6 +39,7 @@ export default {
         brand: {
           standard: "#185ADB",
           light: "#EDF2FC",
+          disabled: "#6A96ED4D",
         },
       },
       height: {

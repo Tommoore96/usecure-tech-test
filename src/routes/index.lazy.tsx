@@ -1,5 +1,5 @@
 import React from "react";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, useNavigate } from "@tanstack/react-router";
 import QuestionCard from "../components/question-card";
 import { data } from "../db";
 import { cn } from "../utils/cn";
@@ -11,7 +11,21 @@ export const Route = createLazyFileRoute("/")({
 });
 
 function Index() {
-  const { currentSlide, nextSlide, previouseSlide } = useUserAnswersStore();
+  const { currentSlide, nextSlide, previouseSlide, questions, userAnswers } =
+    useUserAnswersStore();
+  const navigate = useNavigate();
+
+  const hasCurrentQuestionBeenAnswered = !!userAnswers.hasOwnProperty(
+    questions[currentSlide].question
+  );
+
+  const onClickContinue = () => {
+    if (questions.length === currentSlide + 1) {
+      nextSlide();
+    } else {
+      navigate({ to: "/assessment-complete" });
+    }
+  };
 
   return (
     <div className="flex flex-1 flex-col h-full ">
@@ -19,11 +33,7 @@ function Index() {
         {data.slides.map((slide, index) => (
           <QuestionCard
             key={slide.question}
-            className={cn(
-              { hidden: currentSlide !== index + 1 },
-              "self-center"
-            )}
-            number={index + 1}
+            className={cn({ hidden: currentSlide !== index }, "self-center")}
             question={slide.question}
             answers={slide.answers}
           />
@@ -37,7 +47,11 @@ function Index() {
         >
           Back
         </Button>
-        <Button intent={"primary"} onClick={nextSlide}>
+        <Button
+          intent={"primary"}
+          onClick={onClickContinue}
+          disabled={!hasCurrentQuestionBeenAnswered}
+        >
           Continue
         </Button>
       </div>
