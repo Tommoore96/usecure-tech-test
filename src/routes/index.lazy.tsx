@@ -13,19 +13,20 @@ export const Route = createLazyFileRoute("/")({
 function Index() {
   const { currentSlide, nextSlide, previouseSlide, questions, userAnswers } =
     useUserAnswersStore();
+
   const navigate = useNavigate();
 
-  const hasCurrentQuestionBeenAnswered = !!userAnswers.hasOwnProperty(
-    questions[currentSlide].question
-  );
-
   const onClickContinue = () => {
-    if (questions.length === currentSlide + 1) {
+    if (questions.length > currentSlide + 1) {
       nextSlide();
     } else {
       navigate({ to: "/assessment-complete" });
     }
   };
+
+  const hasCurrentQuestionBeenAnswered = !!userAnswers.hasOwnProperty(
+    questions[currentSlide].question
+  );
 
   return (
     <div className="flex flex-1 flex-col h-full ">

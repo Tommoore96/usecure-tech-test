@@ -14,6 +14,8 @@ export default {
         danger: "#CC2414",
         "neutral-primary": "#0C0D0D", // app default
         "static-primary": "#F5F5F5",
+        "neutral-tertiary": "#868686",
+        "neutral-secondary": "#555556",
       },
       borderColor: {
         neutral: "#001B5229",
@@ -27,12 +29,10 @@ export default {
         1.5: "1.5px",
       },
       backgroundColor: {
-        radio: {
-          neutral: "#001B520A",
-          warning: "#FBF4EB",
-          success: "#ECF6F1",
-          danger: "#FDEFEE",
-        },
+        neutral: "#001B520A",
+        warning: "#FBF4EB",
+        success: "#ECF6F1",
+        danger: "#FDEFEE",
       },
       colors: {
         success: "#0C7D44",
@@ -42,11 +42,18 @@ export default {
           disabled: "#6A96ED4D",
         },
       },
+      gap: {
+        9.5: "38px",
+      },
       height: {
         18: "72px",
       },
       borderRadius: {
         xs: "6px",
+      },
+      fontSize: {
+        h2: "40px",
+        h4: "24px",
       },
     },
   },

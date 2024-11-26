@@ -18,10 +18,10 @@ const radioButton = cva(
     variants: {
       intent: {
         primary:
-          "bg-radio-neutral border-neutral hover:opacity-80 hover:opacity-80 not-disabled:active:ring-2 not-disabled:active:ring-brand-standard active:ring-offset-2",
-        correct: "bg-radio-success border-success",
-        warning: "bg-radio-warning border-warning",
-        danger: "bg-radio-danger border-danger",
+          "bg-neutral border-neutral hover:opacity-80 hover:opacity-80 not-disabled:active:ring-2 not-disabled:active:ring-brand-standard active:ring-offset-2",
+        correct: "bg-success border-success",
+        warning: "bg-warning border-warning",
+        danger: "bg-danger border-danger",
       },
       size: {
         medium: "px-3 py-[10px]",
@@ -52,7 +52,7 @@ export default function RadioButton({
         className="min-w-3.5 min-h-3.5 text-blue-600 border-neutral-elevated active:ring-brand-standard border-1.5"
         disabled={disabled}
       />
-      <label htmlFor={id} className="ml-2">
+      <label htmlFor={id} className="ml-2 text-lg">
         {label}
       </label>
     </li>
