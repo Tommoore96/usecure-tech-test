@@ -1,9 +1,9 @@
 import * as React from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import background from "../assets/background.svg";
 import useUserAnswersStore from "../store";
 
-export const Route = createFileRoute("/assessment-complete")({
+export const Route = createLazyFileRoute("/assessment-complete")({
   component: RouteComponent,
 });
 
@@ -20,10 +20,10 @@ function RouteComponent() {
 
   return (
     <div
-      className="h-screen w-screen bg-cover bg-center flex flex-1 justify-start flex-col pt-24 px-6"
+      className="h-screen w-screen bg-cover bg-center flex flex-1 justify-start flex-col pt-24 px-6 items-center"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="gap-9.5 flex flex-col">
+      <div className="gap-9.5 flex flex-col max-w-[348px]">
         <h1 className="whitespace-pre-line text-h2 font-bold text-center">
           Great work, <br />
           you passed!

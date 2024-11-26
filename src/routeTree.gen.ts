@@ -13,19 +13,21 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AssessmentCompleteImport } from './routes/assessment-complete'
 
 // Create Virtual Routes
 
+const AssessmentCompleteLazyImport = createFileRoute('/assessment-complete')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const AssessmentCompleteRoute = AssessmentCompleteImport.update({
+const AssessmentCompleteLazyRoute = AssessmentCompleteLazyImport.update({
   id: '/assessment-complete',
   path: '/assessment-complete',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/assessment-complete.lazy').then((d) => d.Route),
+)
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
@@ -48,7 +50,7 @@ declare module '@tanstack/react-router' {
       id: '/assessment-complete'
       path: '/assessment-complete'
       fullPath: '/assessment-complete'
-      preLoaderRoute: typeof AssessmentCompleteImport
+      preLoaderRoute: typeof AssessmentCompleteLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -58,18 +60,18 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/assessment-complete': typeof AssessmentCompleteRoute
+  '/assessment-complete': typeof AssessmentCompleteLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/assessment-complete': typeof AssessmentCompleteRoute
+  '/assessment-complete': typeof AssessmentCompleteLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
-  '/assessment-complete': typeof AssessmentCompleteRoute
+  '/assessment-complete': typeof AssessmentCompleteLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -83,12 +85,12 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  AssessmentCompleteRoute: typeof AssessmentCompleteRoute
+  AssessmentCompleteLazyRoute: typeof AssessmentCompleteLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  AssessmentCompleteRoute: AssessmentCompleteRoute,
+  AssessmentCompleteLazyRoute: AssessmentCompleteLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -109,7 +111,7 @@ export const routeTree = rootRoute
       "filePath": "index.lazy.tsx"
     },
     "/assessment-complete": {
-      "filePath": "assessment-complete.tsx"
+      "filePath": "assessment-complete.lazy.tsx"
     }
   }
 }

@@ -5,6 +5,7 @@ import { data } from "../db";
 import { cn } from "../utils/cn";
 import Button from "../components/button";
 import useUserAnswersStore from "../store";
+import ButtonGroup from "../components/button-group";
 
 export const Route = createLazyFileRoute("/")({
   component: Index,
@@ -40,11 +41,12 @@ function Index() {
           />
         ))}
       </div>
-      <div className="justify-self-end flex justify-between items-center border-t-1 border-neutral w-full h-18 md:h-20 px-4 md:px-8">
+      <div className="justify-self-end flex justify-between items-center border-t-1 border-neutral w-full h-18 md:h-20 px-4 md:px-8 gap-2">
         <Button
           intent={"secondary"}
           onClick={previouseSlide}
           disabled={currentSlide === 1}
+          className="w-1/2 sm:w-auto justify-center"
         >
           Back
         </Button>
@@ -52,6 +54,7 @@ function Index() {
           intent={"primary"}
           onClick={onClickContinue}
           disabled={!hasCurrentQuestionBeenAnswered}
+          className="w-1/2 sm:w-auto justify-center"
         >
           Continue
         </Button>
