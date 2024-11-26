@@ -8,6 +8,7 @@ type RadioButtonProps = {
   value: string;
   label: string;
   className?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & VariantProps<typeof radioButton>;
 
 const radioButton = cva(
@@ -34,10 +35,12 @@ export default function RadioButton({
   intent,
   size,
   className,
+  onChange,
 }: RadioButtonProps) {
   return (
     <li className={cn(radioButton({ intent, size }), className)}>
       <input
+        onChange={onChange}
         type="radio"
         name={question}
         id={id}

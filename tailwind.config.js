@@ -9,6 +9,8 @@ export default {
       },
       textColor: {
         secondary: "#555556",
+        warning: "#BA5C00",
+        danger: "#CC2414",
       },
       borderColor: {
         neutral: "#001B5229",
@@ -19,6 +21,9 @@ export default {
       },
       backgroundColor: {
         radio: { neutral: "#001B520A", warning: "#FBF4EB" },
+      },
+      colors: {
+        success: "#0C7D44",
       },
     },
   },

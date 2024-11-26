@@ -24,8 +24,9 @@ function Index() {
           />
         ))}
       </div>
-      <div className="justify-self-end">
+      <div className="justify-self-end flex justify-between">
         <button>Back</button>
+        <button>Continue</button>
       </div>
     </div>
   );
