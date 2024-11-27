@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createLazyFileRoute, Link, notFound } from "@tanstack/react-router";
 import QuestionCard from "../components/question-card";
 import { data } from "../db";
-import Button from "../components/button";
+import Button, { button } from "../components/button";
 import useUserAnswersStore from "../store";
 import Footer from "../components/footer";
 
@@ -52,9 +52,13 @@ function Index() {
         />
       </div>
       <Footer>
-        <Link to={`/slides/${slideIndex - 1}`} disabled={slideIndex === 1}>
+        <Link
+          to={`/slides/${slideIndex - 1}`}
+          disabled={slideIndex === 1}
+          className="w-1/2"
+        >
           <Button
-            className="w-1/2 sm:w-auto justify-center"
+            className="sm:w-auto justify-center w-full"
             intent="secondary"
             disabled={slideIndex === 1}
           >
@@ -69,9 +73,10 @@ function Index() {
                 : `/slides/${slideIndex + 1}`
             }
             disabled={!hasCurrentQuestionBeenAnswered}
+            className="w-1/2"
           >
             <Button
-              className="w-1/2 sm:w-auto justify-center"
+              className="sm:w-auto justify-center w-full"
               intent="primary"
               disabled={!hasCurrentQuestionBeenAnswered}
             >
@@ -84,6 +89,7 @@ function Index() {
             form={QUESTION_FORM_ID}
             disabled={!optionSelected}
             intent={"primary"}
+            className="sm:w-auto justify-center w-1/2"
           >
             Submit
           </Button>

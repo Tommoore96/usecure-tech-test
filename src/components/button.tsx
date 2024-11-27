@@ -7,7 +7,7 @@ type ButtonProps = {
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const button = cva(
-  "py-2 px-4 rounded-xs flex disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-neutral-disabled",
+  "py-3 px-4 rounded-xs flex disabled:pointer-events-none disabled:cursor-not-allowed disabled:text-neutral-disabled",
   {
     variants: {
       intent: {
