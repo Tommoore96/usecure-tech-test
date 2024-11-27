@@ -1,10 +1,9 @@
 import React from "react";
 
-export default function Footer() {
+export default function Footer({ children }) {
   return (
-    <header className="border-t-1 border-t-neutral">
-      <button>Go Back</button>
-      <button>Continue</button>
-    </header>
+    <footer className="justify-self-end flex justify-between items-center border-t-1 border-neutral w-full h-18 md:h-20 px-4 md:px-8 gap-2">
+      {children}
+    </footer>
   );
 }

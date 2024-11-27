@@ -4,6 +4,7 @@ import QuestionCard from "../components/question-card";
 import { data } from "../db";
 import Button, { button } from "../components/button";
 import useUserAnswersStore from "../store";
+import Footer from "../components/footer";
 
 const slides = data.slides;
 
@@ -41,7 +42,7 @@ function Index() {
           maxQuestions={slides.length}
         />
       </div>
-      <div className="justify-self-end flex justify-between items-center border-t-1 border-neutral w-full h-18 md:h-20 px-4 md:px-8 gap-2">
+      <Footer>
         <Link to={`/slides/${slideIndex - 1}`} disabled={slideIndex === 1}>
           <Button
             className={button({
@@ -71,7 +72,7 @@ function Index() {
             Continue
           </Button>
         </Link>
-      </div>
+      </Footer>
     </div>
   );
 }
