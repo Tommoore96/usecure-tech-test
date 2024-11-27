@@ -8,7 +8,6 @@ export const Route = createRootRoute({
     <div className="flex flex-col h-dvh">
       <Header />
       <Outlet />
-      <TanStackRouterDevtools />
     </div>
   ),
   beforeLoad: (ctx) => {

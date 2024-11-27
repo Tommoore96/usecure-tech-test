@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactHTMLElement } from "react";
+import React from "react";
 import { cn } from "../utils/cn";
 
 export default function Badge({

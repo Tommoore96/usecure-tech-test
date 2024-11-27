@@ -10,10 +10,12 @@ export default {
         secondary: "#555556",
         warning: "#BA5C00",
         danger: "#CC2414",
+        static: { primary: "#F5F5F5" },
         neutral: {
           primary: "#0C0D0D",
           secondary: "#555556",
           tertiary: "#868686",
+          disabled: "#0C0D0D4D",
         },
       },
       borderColor: {
