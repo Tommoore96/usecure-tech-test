@@ -12,7 +12,7 @@ Besides React and Typescript, I've not really used any of these technologies in 
 - Zustand - Zustand is an incredible lightweight state manager with minimal setup and better performance than (as far as I know) than all other Context/Provider based state managers.  Perfect for this kind of task where no backend was needed.
 
 ## Potential improvements
-With more time I would:
-- persist the store so the page could be refreshed and keep the same information about the journey, either by using the zustand `persist` middleware or a backend.
+With a bit more time I would:
+- Persist the store so the page could be refreshed and keep the same information about the journey, either by using the zustand `persist` middleware or a backend.
 - Write tests.
 - Add icons (just remembered, but I'd rather hand it in now).
