@@ -9,9 +9,9 @@ export const Route = createLazyFileRoute("/assessment-complete")({
 });
 
 function RouteComponent() {
-  const { userAnswers } = useUserAnswersStore();
+  const { submittedAnswers } = useUserAnswersStore();
 
-  const correctAnswersStatistic = Object.values(userAnswers).filter(
+  const correctAnswersStatistic = Object.values(submittedAnswers).filter(
     (answer) => answer.correct
   ).length;
 

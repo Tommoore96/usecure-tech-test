@@ -5,7 +5,7 @@ type ButtonProps = {
   className?: string;
   disabled?: boolean;
 } & VariantProps<typeof button> &
-  React.HTMLAttributes<HTMLButtonElement>;
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const button = cva(
   "py-2 px-4 rounded-xs flex disabled:bg-brand-disabled disabled:pointer-events-none disabled:cursor-not-allowed",
@@ -25,12 +25,14 @@ export default function Button({
   disabled,
   children,
   className,
+  ...props
 }: ButtonProps) {
   return (
     <button
       className={button({ intent, className })}
       disabled={disabled}
       onClick={(e) => onClick?.(e)}
+      {...props}
     >
       {children}
     </button>

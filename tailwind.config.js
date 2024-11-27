@@ -1,5 +1,3 @@
-import plugin from "tailwindcss";
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -57,12 +55,7 @@ export default {
       },
     },
   },
-  plugins: [
-    plugin(function ({ addVariant }) {
-      // Add a `not-disabled` variant
-      addVariant("not-disabled", "&:not(:disabled)");
-    }),
-  ],
+  plugins: [],
   variants: {
     extend: {
       extend: {

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { data, Slide } from "../db";
+import { Slide } from "../db";
 import { cn } from "../utils/cn";
 import RadioButton from "./radio-button";
 import useUserAnswersStore from "../store";
@@ -9,10 +9,12 @@ import Badge from "./badge";
 type QuestionCardProps = {
   question: Slide["question"];
   answers: Slide["answers"];
+  formId: string;
   className?: string;
   currentQuestion: number;
   questionIndex?: number;
   maxQuestions?: number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 export default function QuestionCard({
@@ -21,14 +23,31 @@ export default function QuestionCard({
   className,
   questionIndex,
   maxQuestions,
+  formId,
+  onChange,
 }: QuestionCardProps) {
-  const { setAnswer, userAnswers } = useUserAnswersStore(
+  const { setAnswer, submittedAnswers } = useUserAnswersStore(
     useShallow((state) => ({
-      userAnswers: state.userAnswers,
+      submittedAnswers: state.submittedAnswers,
       setAnswer: state.setAnswer,
     }))
   );
-  const selectedAnswer = userAnswers[question];
+  const submittedAnswer = submittedAnswers[question];
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const selectedAnswer = formData.get("answer") as string;
+
+    const correctAnswer = answers.find((answer) => answer.correct)?.id;
+
+    setAnswer({
+      question,
+      answerId: selectedAnswer,
+      correct: selectedAnswer === correctAnswer,
+    });
+  };
 
   return (
     <div className={cn("md:max-w-[800px] flex flex-col gap-8", className)}>
@@ -42,18 +61,18 @@ export default function QuestionCard({
         <h2 className="text-xl font-semibold m-0">{question}</h2>
       </div>
 
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form id={formId} onSubmit={handleSubmit}>
         <ul className="gap-3 flex flex-col">
           {answers.map((answer) => {
             let intent: "primary" | "correct" | "danger" | "warning" =
               "primary";
 
-            if (selectedAnswer) {
-              if (selectedAnswer.correct) {
-                if (selectedAnswer.answerId === answer.id) {
+            if (submittedAnswer) {
+              if (submittedAnswer.correct) {
+                if (submittedAnswer.answerId === answer.id) {
                   intent = "correct";
                 }
-              } else if (selectedAnswer.answerId === answer.id) {
+              } else if (submittedAnswer.answerId === answer.id) {
                 intent = "danger";
               } else if (answer.correct) {
                 intent = "warning";
@@ -64,7 +83,7 @@ export default function QuestionCard({
               <div className="flex flex-col gap-1" key={answer.id}>
                 <RadioButton
                   className={cn({
-                    "cursor-not-allowed": !!selectedAnswer,
+                    "cursor-not-allowed": !!submittedAnswer,
                   })}
                   key={answer.id}
                   intent={intent}
@@ -72,14 +91,9 @@ export default function QuestionCard({
                   question={question}
                   value={answer.id}
                   label={answer.text}
-                  onChange={() =>
-                    setAnswer({
-                      question,
-                      answerId: answer.id,
-                      correct: answer.correct,
-                    })
-                  }
-                  disabled={!!selectedAnswer}
+                  name="answer"
+                  disabled={!!submittedAnswer}
+                  onChange={(e) => onChange?.(e)}
                 />
                 {intent === "correct" ? (
                   <span className="text-base text-success">
