@@ -9,3 +9,9 @@ Besides React and Typescript, I've not really used any of these technologies in 
 - Tan Router - I've not used this before, it's only recently become production ready and on a project this size and for what I needed it for it probably doesn't make much difference over the traditional React Router.  But, I know it's what uSecure use, I trust the TanStack and it's another thing to learn so why not.
 - TypeScript - I cannot not use TypeScript anymore.  Main reason is it saves time by catching bugs early.
 - Tailwind - I know it's quick to build, run, and easily customisable.
+
+### Potential improvements
+With more time I would:
+- persist the store so the page could be refreshed and keep the same information about the journey, either by using the zustand `persist` middleware or a backend.
+- Write tests.
+- Add icons (just remembered, but I'd rather hand it in now).
