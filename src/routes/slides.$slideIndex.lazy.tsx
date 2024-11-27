@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { createLazyFileRoute, Link, notFound } from "@tanstack/react-router";
 import QuestionCard from "../components/question-card";
 import { data } from "../db";
-import Button, { button } from "../components/button";
+import Button from "../components/button";
 import useUserAnswersStore from "../store";
 import Footer from "../components/footer";
 

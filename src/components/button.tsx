@@ -2,7 +2,6 @@ import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
 
 type ButtonProps = {
-  className?: string;
   disabled?: boolean;
 } & VariantProps<typeof button> &
   React.ButtonHTMLAttributes<HTMLButtonElement>;

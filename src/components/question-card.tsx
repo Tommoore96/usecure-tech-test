@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Slide } from "../db";
 import { cn } from "../utils/cn";
 import RadioButton from "./radio-button";

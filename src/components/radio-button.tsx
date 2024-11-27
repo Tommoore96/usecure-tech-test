@@ -4,7 +4,6 @@ import React from "react";
 type RadioButtonProps = {
   question: string;
   label: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & VariantProps<typeof radioButton> &
   React.InputHTMLAttributes<HTMLInputElement>;
 
