@@ -11,7 +11,7 @@ export default function Badge({
   return (
     <span
       className={cn(
-        "bg-neutral text-xs px-2 py-1 text-neutral-primary border-1 border-neutral rounded-full",
+        "bg-neutral text-xs px-2 py-1 text-neutral-primary border-1 border-neutral-default rounded-full",
         className
       )}
     >

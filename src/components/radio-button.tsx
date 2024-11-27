@@ -14,7 +14,7 @@ const radioButton = cva(
     variants: {
       intent: {
         primary:
-          "bg-neutral border-neutral hover:opacity-80 hover:opacity-80 focus-within:ring-2 focus-within:ring-brand-standard focus-within:ring-offset-2",
+          "bg-neutral border-neutral-default hover:opacity-80 hover:opacity-80 focus-within:ring-2 focus-within:ring-brand-standard focus-within:ring-offset-2",
         correct: "bg-success border-success",
         warning: "bg-warning border-warning",
         danger: "bg-danger border-danger",

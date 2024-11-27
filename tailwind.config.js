@@ -10,17 +10,20 @@ export default {
         secondary: "#555556",
         warning: "#BA5C00",
         danger: "#CC2414",
-        "neutral-primary": "#0C0D0D", // app default
-        "static-primary": "#F5F5F5",
-        "neutral-tertiary": "#868686",
-        "neutral-secondary": "#555556",
+        neutral: {
+          primary: "#0C0D0D",
+          secondary: "#555556",
+          tertiary: "#868686",
+        },
       },
       borderColor: {
-        neutral: "#001B5229",
         success: "#B4DDC9",
         warning: "#FBF4EB",
         danger: "#F7C1BC",
-        "neutral-elevated": "#001B5252",
+        neutral: {
+          default: "#001B5229",
+          elevated: "#001B5252",
+        },
       },
       borderWidth: {
         1: "1px",
