@@ -1,7 +1,15 @@
 # uSecure Technical Test
 This is Tom Moore's tech test, please contact me if you've got any questions.
 ## Start up
-`bun run dev`
+1. Install Bun: https://bun.sh/docs/installation
+2. Install packages:
+```bash
+bun install
+```
+4. Open dev server:
+```bash
+ bun run dev
+```
 
 ## Tech choices
 Besides React and Typescript, I've not really used any of these technologies in a professional capacity before, but a tech stack of NextJS and Redux seemed like overkill to me.  Especially when SEO isn't important an SPA seems much more appropriate so I chose:
