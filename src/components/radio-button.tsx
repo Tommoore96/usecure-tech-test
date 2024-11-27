@@ -52,7 +52,7 @@ export default function RadioButton({
         className="min-w-3.5 min-h-3.5 text-blue-600 border-neutral-elevated active:ring-brand-standard border-1.5"
         disabled={disabled}
       />
-      <label htmlFor={id} className="ml-2 text-lg">
+      <label htmlFor={id} className="ml-2 text-lg w-full">
         {label}
       </label>
     </li>

@@ -2,20 +2,21 @@ import * as React from "react";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import background from "../assets/background.svg";
 import useUserAnswersStore from "../store";
+import { data } from "../db";
 
 export const Route = createLazyFileRoute("/assessment-complete")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { userAnswers, questions } = useUserAnswersStore();
+  const { userAnswers } = useUserAnswersStore();
 
   const correctAnswersStatistic = Object.values(userAnswers).filter(
     (answer) => answer.correct
   ).length;
 
   const percentageScoreStatistic = Math.round(
-    (correctAnswersStatistic / questions.length) * 100
+    (correctAnswersStatistic / data.slides.length) * 100
   );
 
   return (

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Slide } from "../db";
+import { data, Slide } from "../db";
 import { cn } from "../utils/cn";
 import RadioButton from "./radio-button";
 import useUserAnswersStore from "../store";
@@ -10,30 +10,35 @@ type QuestionCardProps = {
   question: Slide["question"];
   answers: Slide["answers"];
   className?: string;
+  currentQuestion: number;
+  questionIndex?: number;
+  maxQuestions?: number;
 };
 
 export default function QuestionCard({
   question,
   answers,
   className,
+  questionIndex,
+  maxQuestions,
 }: QuestionCardProps) {
-  const { setAnswer, userAnswers, currentSlide, questions } =
-    useUserAnswersStore(
-      useShallow((state) => ({
-        userAnswers: state.userAnswers,
-        setAnswer: state.setAnswer,
-        currentSlide: state.currentSlide,
-        questions: state.questions,
-      }))
-    );
+  const { setAnswer, userAnswers } = useUserAnswersStore(
+    useShallow((state) => ({
+      userAnswers: state.userAnswers,
+      setAnswer: state.setAnswer,
+    }))
+  );
   const selectedAnswer = userAnswers[question];
 
   return (
     <div className={cn("md:max-w-[800px] flex flex-col gap-8", className)}>
       <div className="flex flex-col gap-4">
-        <Badge className="self-start">
-          {currentSlide + 1}/{questions.length}
-        </Badge>
+        {typeof questionIndex === "number" &&
+        typeof maxQuestions === "number" ? (
+          <Badge className="self-start">
+            {questionIndex}/{maxQuestions}
+          </Badge>
+        ) : null}
         <h2 className="text-xl font-semibold m-0">{question}</h2>
       </div>
 
