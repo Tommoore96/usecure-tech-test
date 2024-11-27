@@ -51,7 +51,10 @@ export default function QuestionCard({
 
   return (
     <div
-      className={cn("md:max-w-[800px] flex flex-col gap-8 w-full", className)}
+      className={cn(
+        "md:max-w-[800px] flex flex-col gap-8 md:w-full",
+        className
+      )}
     >
       <div className="flex flex-col gap-4">
         {typeof questionIndex === "number" &&
