@@ -14,9 +14,7 @@ export const Route = createLazyFileRoute("/slides/$slideIndex")({
 function Index() {
   const { userAnswers } = useUserAnswersStore();
 
-  let { slideIndex } = Route.useParams();
-
-  slideIndex = Number(slideIndex);
+  const slideIndex = Number(Route.useParams().slideIndex);
 
   const currentSlide = slides.find(
     (slide) => slide.index === Number(slideIndex)
@@ -26,13 +24,8 @@ function Index() {
     throw notFound();
   }
 
-  console.log("🚀 ~ Index ~ userAnswers:", userAnswers);
   const hasCurrentQuestionBeenAnswered = !!userAnswers.hasOwnProperty(
     currentSlide.question
-  );
-  console.log(
-    "🚀 ~ Index ~ hasCurrentQuestionBeenAnswered:",
-    hasCurrentQuestionBeenAnswered
   );
 
   return (
@@ -49,11 +42,7 @@ function Index() {
         />
       </div>
       <div className="justify-self-end flex justify-between items-center border-t-1 border-neutral w-full h-18 md:h-20 px-4 md:px-8 gap-2">
-        <Link
-          to={`/slides/$slideIndex`}
-          params={{ slideIndex: slideIndex - 1 }}
-          disabled={slideIndex === 1}
-        >
+        <Link to={`/slides/${slideIndex - 1}`} disabled={slideIndex === 1}>
           <Button
             className={button({
               intent: "secondary",

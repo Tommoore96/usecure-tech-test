@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/header";
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet, redirect } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 export const Route = createRootRoute({
@@ -11,4 +11,7 @@ export const Route = createRootRoute({
       <TanStackRouterDevtools />
     </div>
   ),
+  beforeLoad: (ctx) => {
+    ctx.location.pathname === "/" && redirect({ to: "/slides/1", throw: true });
+  },
 });
