@@ -4,7 +4,7 @@ import { devtools } from "zustand/middleware";
 type SelectedAnswer = { answerId: string; correct: boolean };
 
 type UserAnswersState = {
-  userAnswers: Record<string, SelectedAnswer>;
+  submittedAnswers: Record<string, SelectedAnswer>;
   setAnswer: ({
     question,
     answerId,
@@ -19,17 +19,17 @@ type UserAnswersState = {
 
 const useUserAnswersStore = create<UserAnswersState>()(
   devtools((set) => ({
-    userAnswers: {}, // Initial state: no answers selected
+    submittedAnswers: {}, // Initial state: no answers selected
     setAnswer: ({ question, answerId, correct }) =>
       set((state) => ({
-        userAnswers: {
-          ...state.userAnswers,
+        submittedAnswers: {
+          ...state.submittedAnswers,
           [question]: { answerId, correct }, // Update the specific question's answer
         },
       })),
     resetAnswers: () =>
       set({
-        userAnswers: {},
+        submittedAnswers: {},
       }),
   }))
 );
