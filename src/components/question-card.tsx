@@ -10,29 +10,29 @@ type QuestionCardProps = {
   question: Slide["question"];
   answers: Slide["answers"];
   className?: string;
+  currentQuestion: number;
 };
 
 export default function QuestionCard({
   question,
   answers,
   className,
+  currentQuestion,
 }: QuestionCardProps) {
-  const { setAnswer, userAnswers, currentSlide, questions } =
-    useUserAnswersStore(
-      useShallow((state) => ({
-        userAnswers: state.userAnswers,
-        setAnswer: state.setAnswer,
-        currentSlide: state.currentSlide,
-        questions: state.questions,
-      }))
-    );
+  const { setAnswer, userAnswers, questions } = useUserAnswersStore(
+    useShallow((state) => ({
+      userAnswers: state.userAnswers,
+      setAnswer: state.setAnswer,
+      questions: state.slides,
+    }))
+  );
   const selectedAnswer = userAnswers[question];
 
   return (
     <div className={cn("md:max-w-[800px] flex flex-col gap-8", className)}>
       <div className="flex flex-col gap-4">
         <Badge className="self-start">
-          {currentSlide + 1}/{questions.length}
+          {currentQuestion}/{questions.length}
         </Badge>
         <h2 className="text-xl font-semibold m-0">{question}</h2>
       </div>

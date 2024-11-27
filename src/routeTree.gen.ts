@@ -17,7 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const AssessmentCompleteLazyImport = createFileRoute('/assessment-complete')()
-const IndexLazyImport = createFileRoute('/')()
+const SlidesSlideIndexLazyImport = createFileRoute('/slides/$slideIndex')()
 
 // Create/Update Routes
 
@@ -29,28 +29,30 @@ const AssessmentCompleteLazyRoute = AssessmentCompleteLazyImport.update({
   import('./routes/assessment-complete.lazy').then((d) => d.Route),
 )
 
-const IndexLazyRoute = IndexLazyImport.update({
-  id: '/',
-  path: '/',
+const SlidesSlideIndexLazyRoute = SlidesSlideIndexLazyImport.update({
+  id: '/slides/$slideIndex',
+  path: '/slides/$slideIndex',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+} as any).lazy(() =>
+  import('./routes/slides.$slideIndex.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
     '/assessment-complete': {
       id: '/assessment-complete'
       path: '/assessment-complete'
       fullPath: '/assessment-complete'
       preLoaderRoute: typeof AssessmentCompleteLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/slides/$slideIndex': {
+      id: '/slides/$slideIndex'
+      path: '/slides/$slideIndex'
+      fullPath: '/slides/$slideIndex'
+      preLoaderRoute: typeof SlidesSlideIndexLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -59,38 +61,38 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
   '/assessment-complete': typeof AssessmentCompleteLazyRoute
+  '/slides/$slideIndex': typeof SlidesSlideIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
   '/assessment-complete': typeof AssessmentCompleteLazyRoute
+  '/slides/$slideIndex': typeof SlidesSlideIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
   '/assessment-complete': typeof AssessmentCompleteLazyRoute
+  '/slides/$slideIndex': typeof SlidesSlideIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assessment-complete'
+  fullPaths: '/assessment-complete' | '/slides/$slideIndex'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assessment-complete'
-  id: '__root__' | '/' | '/assessment-complete'
+  to: '/assessment-complete' | '/slides/$slideIndex'
+  id: '__root__' | '/assessment-complete' | '/slides/$slideIndex'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
   AssessmentCompleteLazyRoute: typeof AssessmentCompleteLazyRoute
+  SlidesSlideIndexLazyRoute: typeof SlidesSlideIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
   AssessmentCompleteLazyRoute: AssessmentCompleteLazyRoute,
+  SlidesSlideIndexLazyRoute: SlidesSlideIndexLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -103,15 +105,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/assessment-complete"
+        "/assessment-complete",
+        "/slides/$slideIndex"
       ]
-    },
-    "/": {
-      "filePath": "index.lazy.tsx"
     },
     "/assessment-complete": {
       "filePath": "assessment-complete.lazy.tsx"
+    },
+    "/slides/$slideIndex": {
+      "filePath": "slides.$slideIndex.lazy.tsx"
     }
   }
 }

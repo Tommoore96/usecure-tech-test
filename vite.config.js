@@ -6,6 +6,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/slides/1",
   plugins: [react(), TanStackRouterVite(), svgr()],
   css: {
     postcss: {

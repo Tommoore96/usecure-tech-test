@@ -7,7 +7,7 @@ type ButtonProps = {
 } & VariantProps<typeof button> &
   React.HTMLAttributes<HTMLButtonElement>;
 
-const button = cva(
+export const button = cva(
   "py-2 px-4 rounded-xs flex disabled:bg-brand-disabled disabled:pointer-events-none disabled:cursor-not-allowed",
   {
     variants: {

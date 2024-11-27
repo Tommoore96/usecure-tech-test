@@ -1,4 +1,5 @@
 export type Slide = {
+  index: number;
   type: "question";
   question: string;
   answers: { id: string; text: string; correct: boolean }[];
@@ -10,6 +11,7 @@ export const data: Data = {
   title: "A Cyber Security Course",
   slides: [
     {
+      index: 1,
       type: "question",
       question: "What is a risk involved in sharing files?",
       answers: [
@@ -26,6 +28,7 @@ export const data: Data = {
       ],
     },
     {
+      index: 2,
       type: "question",
       question: "What does the acronym VPN stand for?",
       answers: [
@@ -47,6 +50,7 @@ export const data: Data = {
       ],
     },
     {
+      index: 3,
       type: "question",
       question:
         "What is a measure that can be taken to increase security on a machine?",

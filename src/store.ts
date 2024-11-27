@@ -15,10 +15,7 @@ type UserAnswersState = {
     answerId: string;
     correct: boolean;
   }) => void;
-  questions: { question: string; id: number }[];
-  currentSlide: number;
-  previouseSlide: () => void;
-  nextSlide: () => void;
+  slides: { question: string; index: number }[];
   resetAnswers: () => void;
 };
 
@@ -36,21 +33,7 @@ const useUserAnswersStore = create<UserAnswersState>()(
       set({
         userAnswers: {},
       }),
-    currentSlide: 0,
-    /**
-     * reduces the current slide index by 1
-     * @returns void
-     */
-    previouseSlide: () =>
-      set((state) => ({ currentSlide: state.currentSlide - 1 })),
-    /**
-     * increases the current slide index by 1
-     * @returns void
-     */
-    nextSlide: () => set((state) => ({ currentSlide: state.currentSlide + 1 })),
-    questions: data.slides
-      .filter((slide) => slide.type === "question")
-      .map((slide, index) => ({ question: slide.question, id: index + 1 })),
+    slides: data.slides,
   }))
 );
 
