@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { data } from "./db";
 import { devtools } from "zustand/middleware";
 
 type SelectedAnswer = { answerId: string; correct: boolean };
@@ -15,7 +14,6 @@ type UserAnswersState = {
     answerId: string;
     correct: boolean;
   }) => void;
-  slides: { question: string; index: number }[];
   resetAnswers: () => void;
 };
 
@@ -33,7 +31,6 @@ const useUserAnswersStore = create<UserAnswersState>()(
       set({
         userAnswers: {},
       }),
-    slides: data.slides,
   }))
 );
 
