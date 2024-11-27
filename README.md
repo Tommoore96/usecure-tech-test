@@ -9,6 +9,7 @@ Besides React and Typescript, I've not really used any of these technologies in 
 - Tan Router - I've not used this before, it's only recently become production ready and on a project this size and for what I needed it for it probably doesn't make much difference over the traditional React Router.  But, I know it's what uSecure use, I trust the TanStack and it's another thing to learn so why not.
 - TypeScript - I cannot not use TypeScript anymore.  Main reason is it saves time by catching bugs early.
 - Tailwind - I know it's quick to build, run, and easily customisable.
+- Zustand - Zustand is an incredible lightweight state manager with minimal setup and better performance than (as far as I know) than all other Context/Provider based state managers.  Perfect for this kind of task where no backend was needed.
 
 ## Potential improvements
 With more time I would:
