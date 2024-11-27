@@ -1,4 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
+import Tick from "../assets/icons/tick.svg?react";
+import Cross from "../assets/icons/cross.svg?react";
+import Warning from "../assets/icons/warning.svg?react";
 import React from "react";
 
 type RadioButtonProps = {
@@ -37,17 +40,31 @@ export default function RadioButton({
   onChange,
   ...props
 }: RadioButtonProps) {
+  let Icon;
+
+  if (intent === "correct") {
+    Icon = Tick;
+  } else if (intent === "warning") {
+    Icon = Warning;
+  } else if (intent === "danger") {
+    Icon = Cross;
+  }
+
   return (
     <li className={radioButton({ intent, size, className })}>
-      <input
-        onChange={(e) => !disabled && onChange?.(e)}
-        type="radio"
-        id={id}
-        value={value}
-        className="min-w-3.5 min-h-3.5 text-blue-600 border-neutral-elevated focus:ring-brand-standard border-1.5"
-        disabled={disabled}
-        {...props}
-      />
+      {intent === "primary" ? (
+        <input
+          onChange={(e) => !disabled && onChange?.(e)}
+          type="radio"
+          id={id}
+          value={value}
+          className="min-w-3.5 min-h-3.5 text-blue-600 border-neutral-elevated focus:ring-brand-standard border-1.5"
+          disabled={disabled}
+          {...props}
+        />
+      ) : (
+        <Icon className="w-4 h-4 flex-shrink-0" />
+      )}
       <label htmlFor={id} className="ml-2 text-lg w-full">
         {label}
       </label>

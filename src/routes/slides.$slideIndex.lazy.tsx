@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { createLazyFileRoute, Link, notFound } from "@tanstack/react-router";
+import ChevronLeft from "../assets/icons/chevron-left.svg?react";
+import ChevronRight from "../assets/icons/chevron-right.svg?react";
 import QuestionCard from "../components/question-card";
 import { data } from "../db";
-import Button from "../components/button";
+import Button, { button } from "../components/button";
 import useUserAnswersStore from "../store";
 import Footer from "../components/footer";
 
@@ -38,7 +40,7 @@ function Index() {
 
   return (
     <div className="flex flex-1 flex-col h-full ">
-      <div className="flex flex-1 flex-col justify-start md:justify-center pt-12 md:pt-0 px-4 sm:px-12">
+      <div className="flex flex-1 flex-col justify-start md:justify-center pt-12 md:pt-0 px-4 sm:px-12 md:px-16 w-full md:-mt-10">
         <QuestionCard
           currentQuestion={slideIndex}
           key={currentSlide.question}
@@ -52,13 +54,17 @@ function Index() {
         />
       </div>
       <Footer>
-        <Link to={`/slides/${slideIndex - 1}`} disabled={slideIndex === 1}>
+        <Link
+          to={`/slides/${slideIndex - 1}`}
+          disabled={slideIndex === 1}
+          className="w-1/2 sm:w-auto"
+        >
           <Button
-            className="w-1/2 sm:w-auto justify-center"
+            className="sm:w-auto justify-center w-full"
             intent="secondary"
             disabled={slideIndex === 1}
           >
-            Back
+            <ChevronLeft /> Back
           </Button>
         </Link>
         {hasCurrentQuestionBeenAnswered ? (
@@ -69,13 +75,14 @@ function Index() {
                 : `/slides/${slideIndex + 1}`
             }
             disabled={!hasCurrentQuestionBeenAnswered}
+            className="w-1/2 sm:w-auto"
           >
             <Button
-              className="w-1/2 sm:w-auto justify-center"
+              className="sm:w-auto justify-center w-full"
               intent="primary"
               disabled={!hasCurrentQuestionBeenAnswered}
             >
-              Continue
+              Continue <ChevronRight />
             </Button>
           </Link>
         ) : (
@@ -84,6 +91,7 @@ function Index() {
             form={QUESTION_FORM_ID}
             disabled={!optionSelected}
             intent={"primary"}
+            className="sm:w-auto justify-center w-1/2"
           >
             Submit
           </Button>

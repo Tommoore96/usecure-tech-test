@@ -50,7 +50,12 @@ export default function QuestionCard({
   };
 
   return (
-    <div className={cn("md:max-w-[800px] flex flex-col gap-8", className)}>
+    <div
+      className={cn(
+        "md:max-w-[800px] flex flex-col gap-8 md:w-full",
+        className
+      )}
+    >
       <div className="flex flex-col gap-4">
         {typeof questionIndex === "number" &&
         typeof maxQuestions === "number" ? (
@@ -82,9 +87,12 @@ export default function QuestionCard({
             return (
               <div className="flex flex-col gap-1" key={answer.id}>
                 <RadioButton
-                  className={cn({
-                    "cursor-not-allowed": !!submittedAnswer,
-                  })}
+                  className={cn(
+                    {
+                      "cursor-not-allowed": !!submittedAnswer,
+                    },
+                    "max-w-[560px] w-full"
+                  )}
                   key={answer.id}
                   intent={intent}
                   id={answer.id}
