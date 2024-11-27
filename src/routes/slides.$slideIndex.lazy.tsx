@@ -38,7 +38,7 @@ function Index() {
 
   return (
     <div className="flex flex-1 flex-col h-full ">
-      <div className="flex flex-1 flex-col justify-start md:justify-center pt-12 md:pt-0 px-4 sm:px-12">
+      <div className="flex flex-1 flex-col justify-start md:justify-center pt-12 md:pt-0 px-4 sm:px-12 w-full">
         <QuestionCard
           currentQuestion={slideIndex}
           key={currentSlide.question}
