@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 
 type SelectedAnswer = { answerId: string; correct: boolean };
 
@@ -18,20 +18,25 @@ type UserAnswersState = {
 };
 
 const useUserAnswersStore = create<UserAnswersState>()(
-  devtools((set) => ({
-    submittedAnswers: {}, // Initial state: no answers selected
-    setAnswer: ({ question, answerId, correct }) =>
-      set((state) => ({
-        submittedAnswers: {
-          ...state.submittedAnswers,
-          [question]: { answerId, correct }, // Update the specific question's answer
-        },
-      })),
-    resetAnswers: () =>
-      set({
-        submittedAnswers: {},
+  devtools(
+    persist(
+      (set) => ({
+        submittedAnswers: {}, // Initial state: no answers selected
+        setAnswer: ({ question, answerId, correct }) =>
+          set((state) => ({
+            submittedAnswers: {
+              ...state.submittedAnswers,
+              [question]: { answerId, correct }, // Update the specific question's answer
+            },
+          })),
+        resetAnswers: () =>
+          set({
+            submittedAnswers: {},
+          }),
       }),
-  }))
+      { name: "user-answers" }
+    )
+  )
 );
 
 export default useUserAnswersStore;

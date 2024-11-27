@@ -1,8 +1,9 @@
 import * as React from "react";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute, useNavigate } from "@tanstack/react-router";
 import background from "../assets/background.svg";
 import useUserAnswersStore from "../store";
 import { data } from "../db";
+import Button from "../components/button";
 
 export const Route = createLazyFileRoute("/assessment-complete")({
   component: RouteComponent,
@@ -18,6 +19,8 @@ function RouteComponent() {
   const percentageScoreStatistic = Math.round(
     (correctAnswersStatistic / data.slides.length) * 100
   );
+
+  const navigate = useNavigate();
 
   return (
     <div
@@ -40,6 +43,16 @@ function RouteComponent() {
           />
         </div>
       </div>
+      <Button
+        intent={"primary"}
+        onClick={() => {
+          useUserAnswersStore.getState().resetAnswers();
+          navigate({ to: "/slides/1" });
+        }}
+        className="fixed bottom-6 right-6"
+      >
+        Restart
+      </Button>
     </div>
   );
 }
