@@ -1,6 +1,6 @@
 import React from "react";
-import { describe, expect, test } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import QuestionCard, { QuestionCardProps } from "../question-card";
 
@@ -39,7 +39,7 @@ describe("The QuestionCard component", () => {
 
   describe("renders the correct text underneath answers once the", () => {
     test("correct answer has been submitted", async () => {
-      const PROPS = {
+      const PROPS: QuestionCardProps = {
         ...DEFAULT_PROPS,
         submittedAnswer: { answerId: "1", correct: true },
       };
@@ -58,7 +58,7 @@ describe("The QuestionCard component", () => {
     });
 
     test("incorrect answer has been submitted", async () => {
-      const PROPS = {
+      const PROPS: QuestionCardProps = {
         ...DEFAULT_PROPS,
         submittedAnswer: { answerId: "2", correct: false },
       };
@@ -85,5 +85,27 @@ describe("The QuestionCard component", () => {
         )
       ).toBeInTheDocument();
     });
+  });
+
+  test("calls onChange answer is selected and handles submission", async () => {
+    const PROPS: QuestionCardProps = {
+      ...DEFAULT_PROPS,
+      onChange: vi.fn(),
+      handleSubmit: vi.fn(),
+    };
+
+    render(<QuestionCard {...PROPS} />);
+
+    const answer = screen.getByText("React Testing Library");
+
+    fireEvent.click(answer);
+
+    expect(PROPS.onChange).toHaveBeenCalled();
+
+    const form = screen.getByRole("form");
+
+    fireEvent.submit(form);
+
+    expect(PROPS.handleSubmit).toHaveBeenCalled();
   });
 });
