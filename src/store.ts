@@ -22,15 +22,13 @@ const useUserAnswersStore = create<UserAnswersState>()(
     persist(
       (set) => ({
         submittedAnswers: {}, // Initial state: no answers selected
-        setAnswer: ({ question, answerId, correct }) => {
-          console.log("SET ANSWER");
+        setAnswer: ({ question, answerId, correct }) =>
           set((state) => ({
             submittedAnswers: {
               ...state.submittedAnswers,
               [question]: { answerId, correct }, // Update the specific question's answer
             },
-          }));
-        },
+          })),
         resetAnswers: () =>
           set({
             submittedAnswers: {},
