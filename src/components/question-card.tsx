@@ -6,10 +6,10 @@ import useUserAnswersStore, { SelectedAnswer } from "../store";
 import { useShallow } from "zustand/shallow";
 import Badge from "./badge";
 
-type QuestionCardProps = {
+export type QuestionCardProps = {
   question: Slide["question"];
   answers: Slide["answers"];
-  formId: string;
+  formId?: string;
   className?: string;
   questionIndex?: number;
   maxQuestions?: number;
