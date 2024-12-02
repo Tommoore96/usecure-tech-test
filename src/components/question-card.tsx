@@ -45,7 +45,7 @@ export default function QuestionCard({
         <h2 className="text-xl font-semibold m-0">{question}</h2>
       </div>
 
-      <form id={formId} onSubmit={handleSubmit}>
+      <form id={formId} onSubmit={handleSubmit} role="form">
         <ul className="gap-3 flex flex-col">
           {answers.map((answer) => {
             let intent: "primary" | "correct" | "danger" | "warning" =
