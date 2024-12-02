@@ -36,8 +36,6 @@ function Index() {
 
   const submittedAnswer = submittedAnswers[currentSlide.question];
 
-  const hasCurrentQuestionBeenAnswered = !!submittedAnswer;
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -59,7 +57,6 @@ function Index() {
     <div className="flex flex-1 flex-col h-full ">
       <div className="flex flex-1 flex-col justify-start md:justify-center pt-12 md:pt-0 px-4 sm:px-12 md:px-16 w-full md:-mt-10">
         <QuestionCard
-          key={currentSlide.question}
           className="self-center"
           question={currentSlide.question}
           answers={currentSlide.answers}
