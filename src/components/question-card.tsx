@@ -2,8 +2,7 @@ import React from "react";
 import { Slide } from "../db";
 import { cn } from "../utils/cn";
 import RadioButton from "./radio-button";
-import useUserAnswersStore, { SelectedAnswer } from "../store";
-import { useShallow } from "zustand/shallow";
+import { SelectedAnswer } from "../store";
 import Badge from "./badge";
 
 export type QuestionCardProps = {
@@ -27,15 +26,8 @@ export default function QuestionCard({
   formId,
   onChange,
   handleSubmit,
+  submittedAnswer,
 }: QuestionCardProps) {
-  const { submittedAnswers } = useUserAnswersStore(
-    useShallow((state) => ({
-      submittedAnswers: state.submittedAnswers,
-      setAnswer: state.setAnswer,
-    }))
-  );
-  const submittedAnswer = submittedAnswers[question];
-
   return (
     <div
       className={cn(
