@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-type SelectedAnswer = { answerId: string; correct: boolean };
+export type SelectedAnswer = { answerId: string; correct: boolean };
 
 type UserAnswersState = {
   submittedAnswers: Record<string, SelectedAnswer>;

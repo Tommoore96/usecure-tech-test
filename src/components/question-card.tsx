@@ -2,7 +2,7 @@ import React from "react";
 import { Slide } from "../db";
 import { cn } from "../utils/cn";
 import RadioButton from "./radio-button";
-import useUserAnswersStore from "../store";
+import useUserAnswersStore, { SelectedAnswer } from "../store";
 import { useShallow } from "zustand/shallow";
 import Badge from "./badge";
 
@@ -11,10 +11,11 @@ type QuestionCardProps = {
   answers: Slide["answers"];
   formId: string;
   className?: string;
-  currentQuestion: number;
   questionIndex?: number;
   maxQuestions?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  handleSubmit?: React.FormEventHandler<HTMLFormElement>;
+  submittedAnswer?: SelectedAnswer;
 };
 
 export default function QuestionCard({
@@ -25,29 +26,15 @@ export default function QuestionCard({
   maxQuestions,
   formId,
   onChange,
+  handleSubmit,
 }: QuestionCardProps) {
-  const { setAnswer, submittedAnswers } = useUserAnswersStore(
+  const { submittedAnswers } = useUserAnswersStore(
     useShallow((state) => ({
       submittedAnswers: state.submittedAnswers,
       setAnswer: state.setAnswer,
     }))
   );
   const submittedAnswer = submittedAnswers[question];
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target as HTMLFormElement);
-    const selectedAnswer = formData.get("answer") as string;
-
-    const correctAnswer = answers.find((answer) => answer.correct)?.id;
-
-    setAnswer({
-      question,
-      answerId: selectedAnswer,
-      correct: selectedAnswer === correctAnswer,
-    });
-  };
 
   return (
     <div
