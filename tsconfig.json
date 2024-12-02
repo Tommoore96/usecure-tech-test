@@ -3,7 +3,9 @@
     "jsx": "react",
     "typeRoots": ["./node_modules/@types", "./src/declarations"],
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "esnext",
+    "target": "es2017"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/declarations.ts"]
 }
