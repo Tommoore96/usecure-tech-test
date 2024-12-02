@@ -6,12 +6,11 @@ import useUserAnswersStore from "../store";
 import { useShallow } from "zustand/shallow";
 import Badge from "./badge";
 
-type QuestionCardProps = {
+export type QuestionCardProps = {
   question: Slide["question"];
   answers: Slide["answers"];
-  formId: string;
+  formId?: string;
   className?: string;
-  currentQuestion: number;
   questionIndex?: number;
   maxQuestions?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
