@@ -5,7 +5,11 @@ This is Tom Moore's tech test, please contact me if you've got any questions.
 ## Start up
 
 1. Install Bun: https://bun.sh/docs/installation
-2. Install packages:
+2. Use correct node version
+```bash
+nvm use
+```
+4. Install packages:
 
 ```bash
 bun install
@@ -15,6 +19,11 @@ bun install
 
 ```bash
  bun run dev
+```
+
+## Test
+```bash
+bun run test
 ```
 
 ## Tech choices
